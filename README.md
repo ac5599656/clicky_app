@@ -1,4 +1,4 @@
-To see a live demo, please click [here](https://ac5599656.github.io/clicky_app/)
+To see a live demo, please click [here](https://ac5599656.github.io/clicky_app/)<br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
