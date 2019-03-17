@@ -14,13 +14,15 @@ class App extends Component {
 
   // handleIncrement increases this.state.count by 1
   handleClick = id => {
-    if (!this.state.used.includes(id)) {
-      this.setState({ score: this.state.score + 1 });
+    const { used, score: oldScore } = this.state;
+    const score = oldScore + 1;
+
+    if (!used.includes(id)) {
+      this.setState({ score });
       cartoons.sort(() => Math.random() - 0.5);
-      cartoons.forEach(cartoon => {
-        this.setState({
-          used: [...this.state.used, id]
-        });
+
+      this.setState({
+        used: [...used, id]
       });
     } else {
       this.setState({ score: 0, used: [] });
@@ -28,18 +30,20 @@ class App extends Component {
   };
   // Map over this.state.cartoons and render a Card component for each friend object
   render() {
+    const { cartoons, score } = this.state;
+
     return (
       <div>
-        <NavBar score={this.state.score} />
+        <NavBar score={score} />
         <Wrapper>
           <div className="row">
-            {this.state.cartoons.map(cartoon => (
+            {cartoons.map(({ id, name, image }) => (
               <Card
                 handleClick={this.handleClick}
-                id={cartoon.id}
-                key={cartoon.id}
-                name={cartoon.name}
-                image={cartoon.image}
+                id={id}
+                key={id}
+                name={name}
+                image={image}
               />
             ))}
           </div>
